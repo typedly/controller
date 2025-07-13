@@ -1,0 +1,1 @@
+export type { PropertyControllerShape } from './property-controller-shape.interface';
