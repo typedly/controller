@@ -145,8 +145,9 @@ export interface PropertyControllerShape<
 
   /**
    * @description Sets the active state of the descriptor at index.
-   * @param {boolean} active 
-   * @returns {this} 
+   * @param {number} index The index of the descriptor to set active.
+   * @param {boolean} active The active state to set.
+   * @returns {this}
    */
-  setActive(active: boolean, index: number): this;
+  setActive(index: number, active: boolean): this;
 }
