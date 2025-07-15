@@ -14,7 +14,7 @@
 [![GitHub issues][typedly-badge-issues]][typedly-issues]
 [![GitHub license][typedly-badge-license]][typedly-license]
 
-A TypeScript type definitions package for various **controllers**.
+A **TypeScript** type definitions package for various **controllers**.
 
 ## Table of contents
 
@@ -29,13 +29,14 @@ A TypeScript type definitions package for various **controllers**.
   - [Commit](#commit)
   - [Versioning](#versioning)
 - [License](#license)
+- [Related packages](#related-packages)
 
 ## Installation
 
 ### 1. Install peer dependencies
 
 ```bash
-npm install @typedly/callback @typedly/descriptor@5.1.0-beta --save-peer
+npm install @typedly/callback @typedly/descriptor --save-peer
 ```
 
 ### 2. Install the package
@@ -116,6 +117,12 @@ How do I know when to release 1.0.0?
 ## License
 
 MIT © typedly ([license][typedly-license])
+
+## Related packages
+
+- **[@typescript-package/controller](https://github.com/typescript-package/controller)**: A **TypeScript** package with for various kind of controllers.
+- **[@typescript-package/property](https://github.com/typescript-package/property)**: A **TypeScript** package with features to handle object properties.
+- **[@typescript-package/wrap-property](https://github.com/typescript-package/wrap-property)**: A **TypeScript** package for wrapping object properties.
 
 <!-- This package: typedly  -->
   <!-- GitHub: badges -->

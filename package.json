@@ -1,6 +1,6 @@
 {
   "name": "@typedly/controller",
-  "version": "0.0.1-beta",
+  "version": "0.0.1",
   "author": "wwwdev.io <dev@wwwdev.io>",
   "description": "A TypeScript type definitions package for various controllers.",
   "license": "MIT",
@@ -9,8 +9,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "peerDependencies": {
-    "@typedly/callback": "^1.0.0-beta.4",
-    "@typedly/descriptor": "^5.1.0-beta"
+    "@typedly/callback": "^1.0.0",
+    "@typedly/descriptor": "^5.2.0"
   },
   "scripts": {
     "prepublishOnly": "npm install rimraf && npm run pkg && npm run clean",
