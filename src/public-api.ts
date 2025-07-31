@@ -3,5 +3,6 @@
  */
 
 export type {
-  PropertyControllerShape
+  PropertyController,
+  WrappedPropertyDescriptorController,
 } from './property';
