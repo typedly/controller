@@ -1,7 +1,7 @@
 // Interface.
 import { WrappedPropertyDescriptor } from '@typedly/descriptor';
 /**
- * @description The interface defines the structure for a wrapped property descriptor controller that manages property descriptors and their associated metadata.
+ * @description The interface defines the structure for a wrapped property descriptor controller that manages it and its associated metadata.
  * @export
  * @interface WrappedPropertyDescriptorController
  * @template [O=any] 
