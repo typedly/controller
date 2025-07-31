@@ -1,28 +1,38 @@
 // Interface.
-import { DescriptorsShape, PropertyDescriptorChainShape, WrappedPropertyDescriptor } from '@typedly/descriptor';
+import { PropertyDescriptorChain, PropertyDescriptors, WrappedPropertyDescriptor } from '@typedly/descriptor';
 // Type.
 import { GetterCallback } from '@typedly/callback';
 import { SetterCallback } from '@typedly/callback';
 /**
  * @description The interface defines the structure for a property controller that manages property descriptors and their associated metadata.
  * @export
- * @interface PropertyControllerShape
- * @template {Record<PropertyKey, any>} O
- * @template {keyof O} [K=keyof O] The key type of the object O.
- * @template {boolean} [A=boolean] The type of active state of the property.
- * @template {boolean} [F=boolean] The type of enabled state of the property.
- * @template {boolean} [C=boolean] The type of configurable state of the property.
- * @template {boolean} [E=boolean] The type of enumerable state of the property.
- * @template {WrappedPropertyDescriptor<O, K, A, F, C, E>} [D=WrappedPropertyDescriptor<O, K, A, F, C, E>]
+ * @interface PropertyController
+ * @template [O=any] 
+ * @template {keyof O} [K=keyof O] 
+ * @template {K extends keyof O ? O[K] : any} [V=K extends keyof O ? O[K] : any] 
+ * @template {boolean} [A=boolean] 
+ * @template {boolean} [N=boolean] 
+ * @template {boolean} [C=boolean] 
+ * @template {boolean} [E=boolean] 
+ * @template {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>] 
  */
-export interface PropertyControllerShape<
-  O extends Record<PropertyKey, any>,
+export interface PropertyController<
+  // Object.
+  O = any,
+  // Key.
   K extends keyof O = keyof O,
+  // Value.
+  V extends K extends keyof O ? O[K] : any = K extends keyof O ? O[K] : any,
+  // Active.
   A extends boolean = boolean,
-  F extends boolean = boolean,
+  // Enabled.
+  N extends boolean = boolean,
+  // Configurable.
   C extends boolean = boolean,
+  // Enumerable.
   E extends boolean = boolean,
-  D extends WrappedPropertyDescriptor<O, K, A, F, C, E> = WrappedPropertyDescriptor<O, K, A, F, C, E>,
+  // Descriptor.
+  D extends WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> = WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>,
 > {
   /**
    * @description Gets the active state of the property.
@@ -41,16 +51,16 @@ export interface PropertyControllerShape<
   /**
    * @description Gets the descriptor chain for the property.
    * @readonly
-   * @type {(PropertyDescriptorChainShape<O, K, O[K], A, F, C, E> | undefined)}
+   * @type {(PropertyDescriptorChain<O, K, V, A, N, C, E, D> | undefined)}
    */
-  get descriptorChain(): PropertyDescriptorChainShape<O, K, O[K], A, F, C, E, D> | undefined;
+  get descriptorChain(): PropertyDescriptorChain<O, K, V, A, N, C, E, D> | undefined;
 
   /**
    * @description Gets the descriptors for the object properties.
    * @readonly
-   * @type {(DescriptorsShape<O, K, O[K], A, F, C, E, D> | undefined)}
+   * @type {(PropertyDescriptors<O, K, V, A, N, C, E, D> | undefined)}
    */
-  get descriptors(): DescriptorsShape<O, K, O[K], A, F, C, E, D> | undefined;
+  get descriptors(): PropertyDescriptors<O, K, V, A, N, C, E, D> | undefined;
 
   /**
    * @description Gets the key of the property.
@@ -79,6 +89,32 @@ export interface PropertyControllerShape<
    * @type {PropertyKey}
    */
   get privateKey(): PropertyKey;
+
+  //#region Descriptor.
+  /**
+   * @description Gets the getter function of the descriptor.
+   * @type {(D['get'] | undefined)}
+   */
+  get get(): D['get'] | undefined;
+
+  /**
+   * @description Gets the setter function of the descriptor.
+   * @type {(D['set'] | undefined)}
+   */
+  get set(): D['set'] | undefined;
+
+  /**
+   * @description Current `onGet` callback.
+   * @type {(GetterCallback<O, K> | undefined)}
+   */
+  get onGet(): GetterCallback<O, K> | undefined;
+
+  /**
+   * @description Current `onSet` callback.
+   * @type {(SetterCallback<O, K> | undefined)}
+   */
+  get onSet(): SetterCallback<O, K> | undefined;
+  //#endregion Descriptor.
 
   /**
    * @description Attaches the property controller to the object.
@@ -109,36 +145,10 @@ export interface PropertyControllerShape<
   removeDescriptor(index: number): this;
   //#endregion Descriptors.
 
-  //#region Descriptor.
-  /**
-   * @description Gets the getter function of the descriptor.
-   * @type {(D['get'] | undefined)}
-   */
-  get: D['get'] | undefined;
-
-  /**
-   * @description Gets the setter function of the descriptor.
-   * @type {(D['set'] | undefined)}
-   */
-  set: D['set'] | undefined;
-
-  /**
-   * @description Current `onGet` callback.
-   * @type {(GetterCallback<O, K> | undefined)}
-   */
-  onGet: GetterCallback<O, K> | undefined;
-
-  /**
-   * @description Current `onSet` callback.
-   * @type {(SetterCallback<O, K> | undefined)}
-   */
-  onSet: SetterCallback<O, K> | undefined;
-  //#endregion Descriptor.
-
   // Active.
   /**
    * @description Checks if the descriptor at index is active.
-   * @param {number} index - The index of the descriptor to check.
+   * @param {number} index The index of the descriptor to check.
    * @returns {boolean} 
    */
   isActive(index: number): boolean;
