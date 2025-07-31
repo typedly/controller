@@ -20,8 +20,10 @@ A **TypeScript** type definitions package for various **controllers**.
 
 - [Installation](#installation)
 - [Api](#api)
-  - [Interface](#interface)
-    - `PropertyControllerShape`
+  - **Property**
+    - [Interface](#interface)
+      - `PropertyController`
+      - `WrappedPropertyDescriptorController`
 - [Contributing](#contributing)
 - [Support](#support)
 - [Code of Conduct](#code-of-conduct)
@@ -47,12 +49,25 @@ npm install @typedly/controller --save-peer
 
 ## Api
 
+```typescript
+import {
+  PropertyController,
+  WrappedPropertyDescriptorController,
+} from '@typedly/controller';
+```
+
 ### Interface
 
-#### `PropertyControllerShape`
+#### `PropertyController`
 
 ```typescript
-import { PropertyControllerShape } from '@typedly/controller';
+import { PropertyController } from '@typedly/controller';
+```
+
+#### `WrappedPropertyDescriptorController`
+
+```typescript
+import { WrappedPropertyDescriptorController } from '@typedly/controller';
 ```
 
 ## Contributing
@@ -120,6 +135,7 @@ MIT © typedly ([license][typedly-license])
 
 ## Related packages
 
+- **[@typescript-package/descriptor](https://github.com/typescript-package/descriptor)**: A **TypeScript** library for property descriptor.
 - **[@typescript-package/controller](https://github.com/typescript-package/controller)**: A **TypeScript** package with for various kind of controllers.
 - **[@typescript-package/property](https://github.com/typescript-package/property)**: A **TypeScript** package with features to handle object properties.
 - **[@typescript-package/wrap-property](https://github.com/typescript-package/wrap-property)**: A **TypeScript** package for wrapping object properties.
