@@ -60,11 +60,15 @@ import {
 
 #### `PropertyController`
 
+The interface defines the structure for a property controller that manages property descriptors and their associated metadata.
+
 ```typescript
 import { PropertyController } from '@typedly/controller';
 ```
 
 #### `WrappedPropertyDescriptorController`
+
+The interface defines the structure for a wrapped property descriptor controller that manages it and its associated metadata.
 
 ```typescript
 import { WrappedPropertyDescriptorController } from '@typedly/controller';
