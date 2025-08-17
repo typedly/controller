@@ -11,7 +11,7 @@ import { WrappedPropertyDescriptor } from '@typedly/descriptor';
  * @template {boolean} [N=boolean] 
  * @template {boolean} [C=boolean] 
  * @template {boolean} [E=boolean] 
- * @template {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>] 
+ * @template {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor} [D=WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>] 
  * @extends {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>}
  */
 export interface WrappedPropertyDescriptorController<
@@ -30,7 +30,7 @@ export interface WrappedPropertyDescriptorController<
   // Enumerable.
   E extends boolean = boolean,
   // The type of the previous and current descriptor.
-  D extends WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> = WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>
+  D extends WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor = WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>
 > extends WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> {
   /**
    * @description The required active in the property descriptor controller for activating/deactivating callbacks.

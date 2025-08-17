@@ -14,7 +14,7 @@ import { SetterCallback } from '@typedly/callback';
  * @template {boolean} [N=boolean] 
  * @template {boolean} [C=boolean] 
  * @template {boolean} [E=boolean] 
- * @template {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>] 
+ * @template {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor} [D=WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>] 
  */
 export interface PropertyController<
   // Object.
@@ -32,7 +32,7 @@ export interface PropertyController<
   // Enumerable.
   E extends boolean = boolean,
   // Descriptor.
-  D extends WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> = WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>,
+  D extends WrappedPropertyDescriptor<O, K, V, A, N, C, E, D> | PropertyDescriptor = WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>,
 > {
   /**
    * @description Gets the active state of the property.
